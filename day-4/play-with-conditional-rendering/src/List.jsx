@@ -1,24 +1,29 @@
 import PropTypes from 'prop-types';
 
 function List(props) {
-    const fruitList = props.fruits
+    const items = props.items
+    const category = props.category
 
     return (
-        <ul className="fruit-list">
-            {fruitList.map((fruit, index) => (
-                <li key={index}>{fruit.name} - {fruit.calories} calories</li>
-            ))}
-        </ul>
+        <div className="list">
+            <h2>{category}</h2>
+            <ul>
+                {items.map((item, index) => 
+                    <li key={index}>{item.name} - {item.calories} calories</li>
+                )}
+            </ul>
+        </div>
     )
 }
 
 List.propTypes = {
-    fruits: PropTypes.arrayOf(
+    items: PropTypes.arrayOf(
         PropTypes.shape({
             name: PropTypes.string.isRequired,
             calories: PropTypes.number.isRequired
         })
-    ).isRequired
+    ).isRequired,
+    category: PropTypes.string.isRequired
 }
 
 export default List;
